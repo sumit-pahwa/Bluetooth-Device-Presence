@@ -6,7 +6,7 @@ import csv
 
 # setting up devices: DeviceName, DeivceMac, DeviceOwner
 deviceList =[]
-with open('/home/pi/Documents/Python_Projects/BT_iPhone/devices.csv', 'r', encoding="utf-8") as deviceFile:
+with open('<your working folder>/devices.csv', 'r', encoding="utf-8") as deviceFile:
     readCSV = csv.reader(deviceFile, delimiter=',')
     for row in readCSV:
         curr_device = [row[0], row[1], row[2]]
@@ -16,7 +16,7 @@ with open('/home/pi/Documents/Python_Projects/BT_iPhone/devices.csv', 'r', encod
 #setting up google spreadsheets 
 # use creds to create a client to interact with the Google Drive API
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
-creds = ServiceAccountCredentials.from_json_keyfile_name('/home/pi/Documents/Python_Projects/BT_iPhone/client_secret.json', scope)
+creds = ServiceAccountCredentials.from_json_keyfile_name('<your working folder>/client_secret.json', scope)
 client = gspread.authorize(creds)
 sheet = client.open("PawaHousePresenceLog").sheet1
  
