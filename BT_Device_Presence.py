@@ -18,7 +18,7 @@ with open('<your working folder>/devices.csv', 'r', encoding="utf-8") as deviceF
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 creds = ServiceAccountCredentials.from_json_keyfile_name('<your working folder>/client_secret.json', scope)
 client = gspread.authorize(creds)
-sheet = client.open("PawaHousePresenceLog").sheet1
+sheet = client.open("BT_Device_Presence_Log").sheet1
  
 
 
