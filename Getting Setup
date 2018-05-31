@@ -1,0 +1,59 @@
+This litte project sets up a script that will run periodically to check for the presence of devices over Bluetooth. 
+The script just logs the presence of the device to a google spreadsheet. However the presence can be used to personalize and trigger automations as needed
+
+
+Getting setup:
+What you'll need
+machine
+ - running linux This script was developed in a Raspberry Pi 3
+ - Python 3 installed. 
+ - bluetooth
+ - internet connectivity :)
+
+
+Step 1: Pair bluetooth devices
+Put the device whose presence you would like to detect in bluetooth discoverable mode
+On the machine that will be running this script, use your bluetooth manager to pair the device
+
+Step 2: Install dependencies
+install these packages
+bluez
+google api client (pip3 install --upgrade google.api-python.client)
+gspread (pip3 install gspread)
+
+
+Step 3: File setup
+copy the files from this project into your script's working folder
+Open the BT_Device_Presence.py file
+replace all instaces of <your working folder> with a path to your script's working folder. Example /home/pi/Documents/Python_Projects/BT_devices
+Open devices.csv
+enter information for each device whose presence you want to detect. Each row should contain: Device Name, Device BT MAC address, Device Owner
+ - Device Name. This is the actual name of the device as seen by your machine when the device is discoverable. You should be able to see this in your machine's bluetooth manager
+ - Device MAC address. This too should be available in your machine's bluetooth manager
+ - Device owner. This is optional. Not currently used by this script
+
+
+Step 4: setup access to google spreadsheet
+Make sure you have a google drive account where you want to log the presence of your devices
+Follow these instructions to get setup with google sheets API: https://developers.google.com/sheets/api/quickstart/python
+copy the client_secret,json file to your script's working folder
+go to goole drive
+in your google drive home folder create a new spreadsheet and call it BT_Device_Presence_Log
+
+
+You are all setup.
+
+
+now open a terminal window and run 
+python3 <your workingfolder>/BT_Device_Presence.py
+
+If the devices in your devices.csv file are found, you will see each of their names listed twice in the terminal. If the device(s) are not found, you will see the name listed only once in the terminal
+You will also see a row per device in your google spreadsheet. It will say 'Found' or 'Not Found' along with the device Name and device MAC address
+
+Now you are all setup to do smart things based on the presence of a bluetooth device by integrating to other services like IFTTT, Alexa, Google home assistant or anything else with a web interface that the python script can talk to
+
+You can automatically disarm your home security system when you come home with your phone in your pocket
+Or get Alexa to automatically play your favorite music when you come home
+all this without having to have your phone's GPS location constantly being sent to some service in the cloud
+
+have fun!
